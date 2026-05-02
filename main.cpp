@@ -3,7 +3,11 @@
 
 
 int main(){
-    DynamicArray<int> arr;
-    std::cout << arr.GetSize();
+    DynamicArray<int> arr1;
+    std::cout << arr1.GetSize();
+
+    DynamicArray<int> arr2(arr1);
+    std::cout << arr2.GetSize();
+
     return 0;
 }

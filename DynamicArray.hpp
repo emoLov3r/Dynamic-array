@@ -19,4 +19,11 @@ class DynamicArray {
             return size;
         }
 
+        DynamicArray(const DynamicArray& other){ //используем ссылку, чтобы не копировать объект 
+            other.size = size;
+            data = new T[size]; //выделение новой памяти
+            for (size_t i = 0; i < size; i++){
+                data[i] = other.data[i];            }
+            }
+
 };
