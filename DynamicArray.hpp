@@ -5,9 +5,10 @@ template<typename T>
 class DynamicArray {
     private:
         size_t size;
+        size_t capacity;
         T *data;
     public:
-        DynamicArray() : size(5) {
+        DynamicArray() : size(0), capacity(0), data(nullptr) {
             data = new T[size];
         };
 
@@ -62,6 +63,39 @@ class DynamicArray {
 
             return *this;
         }
+
+        void PushBack(const T& value){
+            if (size == capacity){
+                size_t newCapacity;
+                if (capacity == 0){
+                    newCapacity = 1;
+                }else{
+                    newCapacity = capacity * 2;
+                }
+                T* newData = new T[newCapacity];
+                for (size_t i = 0; i < size; i++){
+                    newData[i] = data[i];
+                }
+
+                delete[] data;
+                
+                data = newData;
+                capacity = newCapacity;
+            }
+            data[size] = value;
+            ++size;
+        }
+
+        void PopBack(){
+            if (size > 0){
+                --size;
+            }
+        }
+
+        T& operator[](size_t index){
+            return data[index];
+        }
+
 };
 
 

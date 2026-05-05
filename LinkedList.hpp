@@ -22,10 +22,10 @@ class LinkedList{
         Node<T>* head;
         Node<T>* tail;
         LinkedList(){
-            head = tail = NULL;
+            head = tail = nullptr;
         }
     ~LinkedList(){
-        while(head != NULL){
+        while(head != nullptr){
             PopFront();
         }
     }
@@ -33,10 +33,10 @@ class LinkedList{
         Node<T>* PushFront(const T& data){
             Node<T>* ptr = new Node<T>(data);
             ptr->next = head;
-            if (head != NULL){
+            if (head != nullptr){
                 head->prev = ptr;
             }
-            if (tail == NULL){
+            if (tail == nullptr){
                 tail = ptr;
             }
             head = ptr;
@@ -46,10 +46,10 @@ class LinkedList{
         Node<T>* PushBack(const T& data){
             Node<T>* ptr = new Node<T>(data);
             ptr->prev = tail;
-            if (tail != NULL){
+            if (tail != nullptr){
                 tail->next = ptr;
             }
-            if (head == NULL){
+            if (head == nullptr){
                 head = ptr;
             }
             tail = ptr;
@@ -57,12 +57,12 @@ class LinkedList{
         }
 
         void PopFront(){
-            if (head == NULL){
+            if (head == nullptr){
                 return;
             }
             Node<T>* ptr = head->next;
-            if (ptr != NULL){
-                ptr->prev = NULL;
+            if (ptr != nullptr){
+                ptr->prev = nullptr;
             }else{
                 tail = ptr;
             }
@@ -72,12 +72,12 @@ class LinkedList{
 
 
         void PopBack(){
-            if (tail == NULL){
+            if (tail == nullptr){
                 return;
             }
             Node<T>* ptr = tail->prev;
-            if (ptr != NULL){
-                ptr->next = NULL;
+            if (ptr != nullptr){
+                ptr->next = nullptr;
             }else{
                 head = ptr;
             }
@@ -90,7 +90,7 @@ class LinkedList{
             size_t n = 0;
 
             while (n != index){
-                if (ptr == NULL){
+                if (ptr == nullptr){
                     return ptr;
                 }
                 ptr = ptr->next;
@@ -105,11 +105,11 @@ class LinkedList{
 
         Node<T>* insert(size_t index, const T& data){
             Node<T>* right = GetAt(index);
-            if(right == NULL){
+            if(right == nullptr){
                 return PushBack(data);
             }
             Node<T>* left = right->prev;
-            if (left == NULL){
+            if (left == nullptr){
                 return PushFront(data);
             }
             Node<T>* ptr = new Node<T>(data);
@@ -123,14 +123,14 @@ class LinkedList{
 
         void erase(size_t index){
             Node<T>* ptr = GetAt(index);
-            if (ptr == NULL){
+            if (ptr == nullptr){
                 return;
             }
-            if (ptr->prev == NULL){
+            if (ptr->prev == nullptr){
                 PopFront();
                 return;
             }
-            if (ptr->next == NULL){
+            if (ptr->next == nullptr){
                 PopBack();
                 return;
             }

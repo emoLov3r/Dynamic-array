@@ -10,6 +10,23 @@ int main(){
     DynamicArray<int> arr2(arr1);
     std::cout << arr2.GetSize()<<"\n";
 
+    DynamicArray<int>arr;
+    arr.PushBack(1);
+    arr.PushBack(10);
+    arr.PushBack(123);
+    arr.PushBack(144);
+
+    arr.PopBack();
+    arr.PopBack();
+
+    std::cout<<arr[2];
+
+    for (size_t i = 0; i < arr.GetSize(); i++){
+        std::cout<<arr[i]<<" ";
+    }
+
+
+
     LinkedList<double> lst;
     lst.PushBack(1.0);
     lst.PushBack(2.0);
