@@ -8,14 +8,30 @@ int main(){
     std::cout << arr1.GetSize();
 
     DynamicArray<int> arr2(arr1);
-    std::cout << arr2.GetSize();
+    std::cout << arr2.GetSize()<<"\n";
 
-    LinkedList lst;
+    LinkedList<double> lst;
     lst.PushBack(1.0);
     lst.PushBack(2.0);
     lst.PushBack(3.0);
     lst.PushBack(4.0);
     lst.PushBack(5.0);
 
+    std::cout<<lst[1]->data<<"\n";
+
+    lst.insert(2, -2.5);
+    lst.insert(20, 100);
+
+    lst.erase(3);
+    lst.erase(30);
+   
+
+    for (Node<double>* ptr = lst.head; ptr !=NULL; ptr = ptr->next){
+        std::cout <<ptr->data<<" ";
+    }
+    std::cout<<"\n";
+    for (Node<double>* ptr = lst.tail; ptr != 0; ptr = ptr->prev){
+        std::cout<<ptr->data<<" ";
+    }
     return 0;
 }

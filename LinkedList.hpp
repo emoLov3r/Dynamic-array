@@ -2,25 +2,25 @@
 #include <cstddef>
 
 template<typename T>
-class Node{
-    private:
-            T data;
-            Node<T>* next;
-            Node<T>* prev;
-    public:
-        Node(const T& data){
-            this->data = data;
-            this->prev = this->next = NULL;
-        }
+struct Node{
+    T data;
+    Node<T>* next;
+    Node<T>* prev;
+    Node(const T& data){
+        this->data = data;
+        this->prev = this->next = NULL;
+    }
         
 };
 
 template<typename T>
 class LinkedList{
     private:
+    //    Node<T>* head;
+    //    Node<T>* tail;
+    public:
         Node<T>* head;
         Node<T>* tail;
-    public:
         LinkedList(){
             head = tail = NULL;
         }
@@ -30,8 +30,8 @@ class LinkedList{
         }
     }
 
-        Node* PushFront(const T& data){
-            Node<T>* ptr = new Node(data);
+        Node<T>* PushFront(const T& data){
+            Node<T>* ptr = new Node<T>(data);
             ptr->next = head;
             if (head != NULL){
                 head->prev = ptr;
@@ -43,8 +43,8 @@ class LinkedList{
             return ptr;
         }
 
-        Node* PushBack(const T& data){
-            Node<T>* ptr = new Node(data);
+        Node<T>* PushBack(const T& data){
+            Node<T>* ptr = new Node<T>(data);
             ptr->prev = tail;
             if (tail != NULL){
                 tail->next = ptr;
@@ -112,7 +112,7 @@ class LinkedList{
             if (left == NULL){
                 return PushFront(data);
             }
-            Node<T>* ptr = new Node(data);
+            Node<T>* ptr = new Node<T>(data);
             ptr->prev = left;
             ptr->next = right;
             left->next = ptr;
