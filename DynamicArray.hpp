@@ -28,12 +28,16 @@ class DynamicArray {
         }
 
         DynamicArray<T>& operator= (const DynamicArray& other){ //конструктор копирования присваиванием
-            delete[] data;
-            size = other.size;
-            data = new T[size]; 
-            for (size_t i = 0; i < size; i++){
-                data[i] = other.data[i];            
+            if (this != &other){
+
+                delete[] data;
+                size = other.size;
+                data = new T[size]; 
+                for (size_t i = 0; i < size; i++){
+                    data[i] = other.data[i];            
+                }
             }
+            
             return *this;
         }
         
@@ -46,16 +50,18 @@ class DynamicArray {
         }
 
         DynamicArray<T>& operator= (DynamicArray&& other){ //конструктор перемещения присваиванием
-            delete[] data;
-            size = other.size;
-            data = other.data;
-            
-            other.size = 0;
-            other.data = nullptr;
+            if (this != &other){
+                delete[] data;
+                size = other.size;
+                data = other.data;
+                        
+                other.size = 0;
+                other.data = nullptr;
+            }
+
+
             return *this;
         }
-
-        
-        
-
 };
+
+
