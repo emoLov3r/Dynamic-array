@@ -8,20 +8,19 @@ class DynamicArray {
         size_t capacity;
         T *data;
     public:
-        DynamicArray() : size(0), capacity(0), data(nullptr) {
-            data = new T[size];
-        };
+        DynamicArray() : size(0), capacity(0), data(nullptr) {}
 
         ~DynamicArray(){
             delete[] data;
         }
 
-        size_t GetSize(){
+        size_t GetSize() const{ //const для работы с константными объектами
             return size;
         }
 
         DynamicArray(const DynamicArray& other){ //конструктор копирования
             size = other.size;
+            capacity = other.capacity;
             data = new T[size]; 
             for (size_t i = 0; i < size; i++){
                 data[i] = other.data[i];            
@@ -33,6 +32,7 @@ class DynamicArray {
 
                 delete[] data;
                 size = other.size;
+                capacity = other.capacity;
                 data = new T[size]; 
                 for (size_t i = 0; i < size; i++){
                     data[i] = other.data[i];            
@@ -44,9 +44,11 @@ class DynamicArray {
         
         DynamicArray (DynamicArray&& other){ //конструктор перемещения
             size = other.size;
+            capacity = other.capacity;
             data = other.data;
             
             other.size = 0;
+            other.capacity = 0;
             other.data = nullptr;
         }
 
@@ -54,9 +56,11 @@ class DynamicArray {
             if (this != &other){
                 delete[] data;
                 size = other.size;
+                capacity = other.capacity;
                 data = other.data;
                         
                 other.size = 0;
+                other.capacity = 0;
                 other.data = nullptr;
             }
 
@@ -85,15 +89,47 @@ class DynamicArray {
             data[size] = value;
             ++size;
         }
+        
+        const T& operator[](size_t index){
+            return data[index];
+        }
 
+        T* GetAt(size_t index){
+            if (index >= size){
+                return nullptr;
+            }
+            return &data[index];
+        }
+
+        int IsEmpty() const{
+            if  (size > 0){
+                return 0;
+            } else{
+                return 1;
+            }
+        }
+
+        void clear(){
+            size = 0;
+        }
+
+        void Reserve(size_t newCapacity){
+            if (newCapacity <= capacity){
+                return;
+            }
+            T* newData = new T[newCapacity];
+            for (size_t i = 0; i < size; i++){
+                newData[i] = data[i];
+            }
+            delete[]data;
+            data = newData;
+            capacity = newCapacity;
+        }
+ 
         void PopBack(){
             if (size > 0){
                 --size;
             }
-        }
-
-        T& operator[](size_t index){
-            return data[index];
         }
 
 };

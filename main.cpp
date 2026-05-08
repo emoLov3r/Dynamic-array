@@ -16,7 +16,21 @@ int main(){
     arr.PushBack(123);
     arr.PushBack(144);
 
-    arr.PopBack();
+    std::cout<<"Размер массива: "<<arr.GetSize()<<"\n";
+
+    for (size_t i = 0; i < arr.GetSize(); i++){
+        std::cout<<arr[i]<<" ";
+    }
+
+    std::cout<<" ";
+
+    if (arr.IsEmpty()){
+        std::cout<<"Массив пустой\n";
+    }else{
+        std::cout<<"Массив не пустой\n";
+    }
+
+ /*   arr.PopBack();
     arr.PopBack();
 
     std::cout<<arr[2];
@@ -49,6 +63,6 @@ int main(){
     std::cout<<"\n";
     for (Node<double>* ptr = lst.tail; ptr != 0; ptr = ptr->prev){
         std::cout<<ptr->data<<" ";
-    }
+    }*/
     return 0;
 }
